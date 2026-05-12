@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>TG电报频道群组导航</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, "Microsoft YaHei", sans-serif;
+      background: #f5f6fa;
+      color: #333;
+    }
+
+    .layout {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      width: 240px;
+      background: #2f3640;
+      color: #fff;
+      padding: 20px 0;
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      overflow-y: auto;
+    }
+
+    .sidebar h2 {
+      font-size: 18px;
+      padding: 0 20px;
+      margin-bottom: 20px;
+    }
+
+    .sidebar a {
+      display: block;
+      color: #dcdde1;
+      text-decoration: none;
+      padding: 10px 20px;
+      font-size: 14px;
+    }
+
+    .sidebar a:hover {
+      background: #414b57;
+      color: #fff;
+    }
+
+    .main {
+      margin-left: 240px;
+      padding: 24px;
+      width: calc(100% - 240px);
+    }
+
+    .topbar {
+      background: #fff;
+      border-radius: 10px;
+      padding: 18px 22px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    .topbar h1 {
+      margin: 0 0 8px;
+      font-size: 24px;
+    }
+
+    .topbar p {
+      margin: 0;
+      color: #666;
+    }
+
+    .section {
+      margin-bottom: 36px;
+    }
+
+    .section h2 {
+      font-size: 20px;
+      margin-bottom: 16px;
+      border-left: 4px solid #3498db;
+      padding-left: 10px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 16px;
+      text-decoration: none;
+      color: #333;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      transition: 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+    }
+
+    .card-title {
+      font-size: 16px;
+      font-weight: bold;
+      color: #0984e3;
+      margin-bottom: 8px;
+    }
+
+    .card-desc {
+      font-size: 14px;
+      color: #666;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 768px) {
+      .layout {
+        display: block;
+      }
+
+      .sidebar {
+        position: static;
+        width: 100%;
+      }
+
+      .main {
+        margin-left: 0;
+        width: 100%;
+        padding: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="layout">
+  <aside class="sidebar">
+    <h2>Telegram导航</h2>
+    <a href="#search-bot">搜索机器人</a>
+    <a href="#groups">搜索群组</a>
+    <a href="#telegram">Telegram工具</a>
+    <a href="#news">新闻资讯</a>
+    <a href="#movies">影视娱乐</a>
+    <a href="#tools">网络资源</a>
+    <a href="#about">关于网站</a>
+  </aside>
+
+  <main class="main">
+    <div class="topbar">
+      <h1>TG电报频道群组导航</h1>
+      <p>整理 Telegram 频道、群组、机器人和实用工具。</p>
+    </div>
+
+    <section class="section" id="search-bot">
+      <h2>搜索机器人</h2>
+      <div class="grid">
+        <a class="card" href="https://t.me/examplebot" target="_blank">
+          <div class="card-title">示例搜索机器人</div>
+          <div class="card-desc">用于搜索频道、群组、资源和机器人。</div>
+        </a>
+
+        <a class="card" href="https://t.me/examplebot2" target="_blank">
+          <div class="card-title">TG资源搜索</div>
+          <div class="card-desc">输入关键词，查找相关 Telegram 资源。</div>
+        </a>
+      </div>
+    </section>
+
+    <section class="section" id="groups">
+      <h2>搜索群组</h2>
+      <div class="grid">
+        <a class="card" href="https://t.me/examplegroup" target="_blank">
+          <div class="card-title">示例群组</div>
+          <div class="card-desc">这里填写群组介绍。</div>
+        </a>
+
+        <a class="card" href="https://t.me/examplegroup2" target="_blank">
+          <div class="card-title">频道交流群</div>
+          <div class="card-desc">这里填写群组介绍。</div>
+        </a>
+      </div>
+    </section>
+
+    <section class="section" id="telegram">
+      <h2>Telegram工具</h2>
+      <div class="grid">
+        <a class="card" href="https://t.me/BotFather" target="_blank">
+          <div class="card-title">BotFather</div>
+          <div class="card-desc">Telegram 官方机器人创建工具。</div>
+        </a>
+
+        <a class="card" href="https://t.me/stickers" target="_blank">
+          <div class="card-title">Stickers</div>
+          <div class="card-desc">创建和管理 Telegram 贴纸包。</div>
+        </a>
+      </div>
+    </section>
+
+    <section class="section" id="news">
+      <h2>新闻资讯</h2>
+      <div class="grid">
+        <a class="card" href="https://t.me/example_news" target="_blank">
+          <div class="card-title">新闻频道示例</div>
+          <div class="card-desc">这里填写新闻频道介绍。</div>
+        </a>
+      </div>
+    </section>
+
+    <section class="section" id="movies">
+      <h2>影视娱乐</h2>
+      <div class="grid">
+        <a class="card" href="https://t.me/example_movie" target="_blank">
+          <div class="card-title">影视频道示例</div>
+          <div class="card-desc">这里填写影视频道介绍。</div>
+        </a>
+      </div>
+    </section>
+
+    <section class="section" id="tools">
+      <h2>网络资源</h2>
+      <div class="grid">
+        <a class="card" href="https://example.com" target="_blank">
+          <div class="card-title">工具网站示例</div>
+          <div class="card-desc">这里填写网站介绍。</div>
+        </a>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <h2>关于网站</h2>
+      <div class="grid">
+        <div class="card">
+          <div class="card-title">免责声明</div>
+          <div class="card-desc">
+            本站仅做公开信息整理，链接内容由第三方提供，请自行判断风险并遵守当地法律法规。
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+</body>
+</html>
