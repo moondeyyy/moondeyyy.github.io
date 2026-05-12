@@ -1,262 +1,885 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <title>TG电报频道群组导航</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Moondeyyy Hub｜Telegram 频道群组与实用资源收藏合集</title>
+  <meta name="description" content="Moondeyyy Hub 是一个整理 Telegram 频道、群组、机器人、技术资源、工具网站和学习资料的聚合导航网站。" />
+
   <style>
+    :root {
+      --bg: #f6f8fb;
+      --bg-soft: #ffffff;
+      --card: rgba(255, 255, 255, 0.88);
+      --text: #111827;
+      --muted: #6b7280;
+      --line: #e5e7eb;
+      --primary: #2563eb;
+      --primary-soft: rgba(37, 99, 235, 0.12);
+      --accent: #7c3aed;
+      --danger: #ef4444;
+      --shadow: 0 20px 50px rgba(15, 23, 42, 0.08);
+      --table-head: #f3f4f6;
+    }
+
+    body.dark {
+      --bg: #070b16;
+      --bg-soft: #0e1424;
+      --card: rgba(17, 24, 39, 0.78);
+      --text: #f9fafb;
+      --muted: #9ca3af;
+      --line: rgba(255, 255, 255, 0.1);
+      --primary: #60a5fa;
+      --primary-soft: rgba(96, 165, 250, 0.16);
+      --accent: #a78bfa;
+      --danger: #fb7185;
+      --shadow: 0 24px 70px rgba(0, 0, 0, 0.35);
+      --table-head: rgba(255, 255, 255, 0.06);
+    }
+
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
-      margin: 0;
-      font-family: Arial, "Microsoft YaHei", sans-serif;
-      background: #f5f6fa;
-      color: #333;
-    }
-
-    .layout {
-      display: flex;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+      background:
+        radial-gradient(circle at 10% 0%, rgba(37, 99, 235, 0.16), transparent 28%),
+        radial-gradient(circle at 90% 10%, rgba(124, 58, 237, 0.16), transparent 30%),
+        var(--bg);
+      color: var(--text);
       min-height: 100vh;
+      transition: background 0.3s ease, color 0.3s ease;
     }
 
-    .sidebar {
-      width: 240px;
-      background: #2f3640;
-      color: #fff;
-      padding: 20px 0;
-      position: fixed;
+    a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      width: min(1120px, 92%);
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
       top: 0;
-      bottom: 0;
-      overflow-y: auto;
+      z-index: 100;
+      backdrop-filter: blur(18px);
+      background: color-mix(in srgb, var(--bg-soft) 80%, transparent);
+      border-bottom: 1px solid var(--line);
     }
 
-    .sidebar h2 {
-      font-size: 18px;
-      padding: 0 20px;
+    .nav {
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 900;
+      font-size: 20px;
+      letter-spacing: -0.5px;
+    }
+
+    .brand-icon {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: white;
+      box-shadow: 0 10px 30px rgba(37, 99, 235, 0.28);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .nav-links a {
+      color: var(--muted);
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    .theme-toggle {
+      border: 1px solid var(--line);
+      background: var(--card);
+      color: var(--text);
+      border-radius: 999px;
+      padding: 9px 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 700;
+      box-shadow: var(--shadow);
+    }
+
+    .hero {
+      padding: 70px 0 42px;
+    }
+
+    .hero-card {
+      border: 1px solid var(--line);
+      background: var(--card);
+      box-shadow: var(--shadow);
+      border-radius: 32px;
+      padding: 38px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      width: 340px;
+      height: 340px;
+      right: -120px;
+      top: -120px;
+      background: radial-gradient(circle, rgba(37, 99, 235, 0.22), transparent 65%);
+      pointer-events: none;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 13px;
+      border-radius: 999px;
+      background: var(--primary-soft);
+      color: var(--primary);
+      font-size: 14px;
+      font-weight: 800;
       margin-bottom: 20px;
     }
 
-    .sidebar a {
-      display: block;
-      color: #dcdde1;
-      text-decoration: none;
-      padding: 10px 20px;
+    h1 {
+      font-size: clamp(34px, 6vw, 62px);
+      line-height: 1.05;
+      letter-spacing: -2.5px;
+      margin-bottom: 18px;
+      max-width: 900px;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-desc {
+      max-width: 850px;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.85;
+    }
+
+    .notice {
+      margin-top: 24px;
+      border-left: 4px solid var(--danger);
+      background: color-mix(in srgb, var(--danger) 10%, transparent);
+      padding: 15px 16px;
+      border-radius: 14px;
+      line-height: 1.7;
+      color: var(--text);
+    }
+
+    .search-panel {
+      margin-top: 26px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 14px;
+    }
+
+    .search-box {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 16px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--bg-soft);
+    }
+
+    .search-box input {
+      width: 100%;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      color: var(--text);
+      font-size: 15px;
+    }
+
+    .search-box input::placeholder {
+      color: var(--muted);
+    }
+
+    .quick-btn {
+      border: 0;
+      border-radius: 18px;
+      padding: 0 20px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: white;
+      font-weight: 900;
+      cursor: pointer;
+      box-shadow: 0 16px 36px rgba(37, 99, 235, 0.22);
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 24px;
+      padding: 22px 0 70px;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 92px;
+      align-self: start;
+      border: 1px solid var(--line);
+      background: var(--card);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      padding: 20px;
+    }
+
+    .sidebar h2 {
+      font-size: 20px;
+      margin-bottom: 14px;
+    }
+
+    .menu {
+      list-style: none;
+      display: grid;
+      gap: 8px;
+    }
+
+    .menu a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: var(--text);
+      padding: 11px 12px;
+      border-radius: 14px;
+      transition: 0.2s;
+      font-weight: 700;
       font-size: 14px;
     }
 
-    .sidebar a:hover {
-      background: #414b57;
-      color: #fff;
+    .menu a:hover {
+      background: var(--primary-soft);
+      text-decoration: none;
+      color: var(--primary);
     }
 
-    .main {
-      margin-left: 240px;
-      padding: 24px;
-      width: calc(100% - 240px);
-    }
-
-    .topbar {
-      background: #fff;
-      border-radius: 10px;
-      padding: 18px 22px;
-      margin-bottom: 24px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    }
-
-    .topbar h1 {
-      margin: 0 0 8px;
-      font-size: 24px;
-    }
-
-    .topbar p {
-      margin: 0;
-      color: #666;
+    .content {
+      display: grid;
+      gap: 24px;
     }
 
     .section {
-      margin-bottom: 36px;
+      border: 1px solid var(--line);
+      background: var(--card);
+      border-radius: 26px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
     }
 
-    .section h2 {
-      font-size: 20px;
-      margin-bottom: 16px;
-      border-left: 4px solid #3498db;
-      padding-left: 10px;
+    .section-head {
+      padding: 22px 24px;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 14px;
     }
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 16px;
+    .section-head h2 {
+      font-size: 28px;
+      letter-spacing: -1px;
+      margin-bottom: 6px;
     }
 
-    .card {
-      background: #fff;
-      border-radius: 10px;
-      padding: 16px;
-      text-decoration: none;
-      color: #333;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-      transition: 0.2s;
-    }
-
-    .card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 6px 16px rgba(0,0,0,0.1);
-    }
-
-    .card-title {
-      font-size: 16px;
-      font-weight: bold;
-      color: #0984e3;
-      margin-bottom: 8px;
-    }
-
-    .card-desc {
-      font-size: 14px;
-      color: #666;
+    .section-head p {
+      color: var(--muted);
       line-height: 1.6;
+      font-size: 14px;
     }
 
-    @media (max-width: 768px) {
+    .pill {
+      white-space: nowrap;
+      border-radius: 999px;
+      background: var(--primary-soft);
+      color: var(--primary);
+      padding: 8px 12px;
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 720px;
+    }
+
+    th,
+    td {
+      padding: 16px 18px;
+      text-align: left;
+      border-bottom: 1px solid var(--line);
+      vertical-align: middle;
+    }
+
+    th {
+      background: var(--table-head);
+      color: var(--text);
+      font-size: 14px;
+    }
+
+    td {
+      color: var(--text);
+      line-height: 1.55;
+    }
+
+    tr:hover td {
+      background: color-mix(in srgb, var(--primary) 7%, transparent);
+    }
+
+    .name {
+      font-weight: 900;
+    }
+
+    .desc {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .label {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      padding: 5px 9px;
+      font-size: 12px;
+      font-weight: 900;
+      background: var(--primary-soft);
+      color: var(--primary);
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      padding: 22px;
+    }
+
+    .mini-card {
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 18px;
+      background: color-mix(in srgb, var(--bg-soft) 72%, transparent);
+      transition: 0.22s;
+    }
+
+    .mini-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--primary);
+    }
+
+    .mini-card .icon {
+      font-size: 25px;
+      margin-bottom: 10px;
+    }
+
+    .mini-card h3 {
+      margin-bottom: 8px;
+      font-size: 17px;
+    }
+
+    .mini-card p {
+      color: var(--muted);
+      line-height: 1.65;
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+
+    .empty {
+      display: none;
+      padding: 30px;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 36px 0;
+      color: var(--muted);
+      text-align: center;
+      font-size: 14px;
+    }
+
+    @media (max-width: 920px) {
       .layout {
-        display: block;
+        grid-template-columns: 1fr;
       }
 
       .sidebar {
         position: static;
-        width: 100%;
       }
 
-      .main {
-        margin-left: 0;
-        width: 100%;
-        padding: 16px;
+      .nav-links {
+        display: none;
+      }
+
+      .cards {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 620px) {
+      .hero-card {
+        padding: 26px;
+        border-radius: 24px;
+      }
+
+      .search-panel {
+        grid-template-columns: 1fr;
+      }
+
+      .quick-btn {
+        padding: 14px 20px;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .section-head {
+        align-items: flex-start;
+        flex-direction: column;
       }
     }
   </style>
 </head>
+
 <body>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <div class="brand-icon">⚡</div>
+        <span>Moondeyyy Hub</span>
+      </div>
 
-<div class="layout">
-  <aside class="sidebar">
-    <h2>Telegram导航</h2>
-    <a href="#search-bot">搜索机器人</a>
-    <a href="#groups">搜索群组</a>
-    <a href="#telegram">Telegram工具</a>
-    <a href="#news">新闻资讯</a>
-    <a href="#movies">影视娱乐</a>
-    <a href="#tools">网络资源</a>
-    <a href="#about">关于网站</a>
-    <a href="#adult">成人网站</a>
-  </aside>
+      <nav class="nav-links">
+        <a href="#search-bots">搜索机器人</a>
+        <a href="#channels">频道收藏</a>
+        <a href="#tools">工具资源</a>
+        <a href="#learn">学习资源</a>
+        <a href="#notice">声明</a>
+      </nav>
 
-  <main class="main">
-    <div class="topbar">
-      <h1>TG电报频道群组导航</h1>
-      <p>整理 Telegram 频道、群组、机器人和实用工具。</p>
+      <button class="theme-toggle" id="themeToggle" type="button">
+        <span id="themeIcon">🌙</span>
+        <span id="themeText">夜间</span>
+      </button>
     </div>
+  </header>
 
-    <section class="section" id="search-bot">
-      <h2>搜索机器人</h2>
-      <div class="grid">
-        <a class="card" href="https://t.me/examplebot" target="_blank">
-          <div class="card-title">示例搜索机器人</div>
-          <div class="card-desc">用于搜索频道、群组、资源和机器人。</div>
-        </a>
+  <main>
+    <section class="hero container">
+      <div class="hero-card">
+        <div class="tag">📌 Telegram · Tools · Resources · Collection</div>
 
-        <a class="card" href="https://t.me/examplebot2" target="_blank">
-          <div class="card-title">TG资源搜索</div>
-          <div class="card-desc">输入关键词，查找相关 Telegram 资源。</div>
-        </a>
-      </div>
-    </section>
+        <h1>
+          Telegram 频道群组与
+          <span class="gradient-text">实用资源收藏合集</span>
+        </h1>
 
-    <section class="section" id="groups">
-      <h2>搜索群组</h2>
-      <div class="grid">
-        <a class="card" href="https://t.me/examplegroup" target="_blank">
-          <div class="card-title">示例群组</div>
-          <div class="card-desc">这里填写群组介绍。</div>
-        </a>
+        <p class="hero-desc">
+          整理收集一些 Telegram 频道、群组、机器人、技术资源、工具网站和学习资料。
+          本站用于信息归档和导航收藏，方便快速查找常用入口。
+        </p>
 
-        <a class="card" href="https://t.me/examplegroup2" target="_blank">
-          <div class="card-title">频道交流群</div>
-          <div class="card-desc">这里填写群组介绍。</div>
-        </a>
-      </div>
-    </section>
+        <div class="notice" id="notice">
+          <strong>注意：</strong>
+          请遵守所在地法律法规。本站仅作为信息整理与导航示例，不对外部链接内容负责。
+          请不要传播、存储或访问任何违法违规内容。
+        </div>
 
-    <section class="section" id="telegram">
-      <h2>Telegram工具</h2>
-      <div class="grid">
-        <a class="card" href="https://t.me/BotFather" target="_blank">
-          <div class="card-title">BotFather</div>
-          <div class="card-desc">Telegram 官方机器人创建工具。</div>
-        </a>
-
-        <a class="card" href="https://t.me/stickers" target="_blank">
-          <div class="card-title">Stickers</div>
-          <div class="card-desc">创建和管理 Telegram 贴纸包。</div>
-        </a>
-      </div>
-    </section>
-
-    <section class="section" id="news">
-      <h2>新闻资讯</h2>
-      <div class="grid">
-        <a class="card" href="https://t.me/example_news" target="_blank">
-          <div class="card-title">新闻频道示例</div>
-          <div class="card-desc">这里填写新闻频道介绍。</div>
-        </a>
-      </div>
-    </section>
-
-    <section class="section" id="movies">
-      <h2>影视娱乐</h2>
-      <div class="grid">
-        <a class="card" href="https://t.me/example_movie" target="_blank">
-          <div class="card-title">影视频道示例</div>
-          <div class="card-desc">这里填写影视频道介绍。</div>
-        </a>
-      </div>
-    </section>
-
-    <section class="section" id="tools">
-      <h2>网络资源</h2>
-      <div class="grid">
-        <a class="card" href="https://example.com" target="_blank">
-          <div class="card-title">工具网站示例</div>
-          <div class="card-desc">这里填写网站介绍。</div>
-        </a>
-      </div>
-    </section>
-
-    <section class="section" id="about">
-      <h2>关于网站</h2>
-      <div class="grid">
-        <div class="card">
-          <div class="card-title">免责声明</div>
-          <div class="card-desc">
-            本站仅做公开信息整理，链接内容由第三方提供，请自行判断风险并遵守当地法律法规。
+        <div class="search-panel">
+          <div class="search-box">
+            <span>🔍</span>
+            <input id="searchInput" type="text" placeholder="搜索名称、说明或分类，例如：机器人、新闻、技术、学习..." />
           </div>
+          <button class="quick-btn" type="button" onclick="clearSearch()">清空搜索</button>
         </div>
       </div>
     </section>
 
-    <section class="section" id="adult">
-  <h2>成人网站</h2>
-  <div class="grid">
-    <a class="card" href="https://example.com" target="_blank">
-      <div class="card-title">网站名称</div>
-      <div class="card-desc">这里填写网站介绍。</div>
-    </a>
-  </div>
-</section>
-  </main>
-</div>
+    <section class="container layout">
+      <aside class="sidebar">
+        <h2>目录</h2>
+        <ul class="menu">
+          <li><a href="#search-bots">搜索机器人 <span>→</span></a></li>
+          <li><a href="#channels">频道收藏 <span>→</span></a></li>
+          <li><a href="#tools">工具资源 <span>→</span></a></li>
+          <li><a href="#learn">学习资源 <span>→</span></a></li>
+          <li><a href="#projects">站长项目 <span>→</span></a></li>
+          <li><a href="#notice">免责声明 <span>→</span></a></li>
+        </ul>
+      </aside>
 
+      <div class="content">
+        <section class="section" id="search-bots">
+          <div class="section-head">
+            <div>
+              <h2>搜索机器人</h2>
+              <p>用于搜索频道、群组、资料或公开信息的机器人入口。</p>
+            </div>
+            <span class="pill">Bots</span>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>名称</th>
+                  <th>链接</th>
+                  <th>分类</th>
+                  <th>说明</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="resource-row">
+                  <td class="name">Telegram 搜索机器人 A</td>
+                  <td><a href="#" target="_blank">@example_bot</a></td>
+                  <td><span class="label">搜索</span></td>
+                  <td class="desc">用于快速检索公开频道、群组或关键词结果。</td>
+                </tr>
+
+                <tr class="resource-row">
+                  <td class="name">资源导航机器人 B</td>
+                  <td><a href="#" target="_blank">@resource_bot</a></td>
+                  <td><span class="label">导航</span></td>
+                  <td class="desc">适合整理常用入口和快速跳转。</td>
+                </tr>
+
+                <tr class="resource-row">
+                  <td class="name">资料查询机器人 C</td>
+                  <td><a href="#" target="_blank">@search_helper_bot</a></td>
+                  <td><span class="label">资料</span></td>
+                  <td class="desc">可以按照关键词查询公开资料和信息。</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="empty">没有找到匹配结果。</div>
+        </section>
+
+        <section class="section" id="channels">
+          <div class="section-head">
+            <div>
+              <h2>频道收藏</h2>
+              <p>整理一些新闻、技术、工具、设计和效率类频道。</p>
+            </div>
+            <span class="pill">Channels</span>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>名称</th>
+                  <th>链接</th>
+                  <th>分类</th>
+                  <th>说明</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="resource-row">
+                  <td class="name">科技资讯频道</td>
+                  <td><a href="#" target="_blank">@tech_news</a></td>
+                  <td><span class="label">新闻</span></td>
+                  <td class="desc">关注科技、互联网、AI 和产品动态。</td>
+                </tr>
+
+                <tr class="resource-row">
+                  <td class="name">AI 工具频道</td>
+                  <td><a href="#" target="_blank">@ai_tools</a></td>
+                  <td><span class="label">AI</span></td>
+                  <td class="desc">分享 AI 工具、提示词、自动化和创作资源。</td>
+                </tr>
+
+                <tr class="resource-row">
+                  <td class="name">设计灵感频道</td>
+                  <td><a href="#" target="_blank">@design_inspire</a></td>
+                  <td><span class="label">设计</span></td>
+                  <td class="desc">收集 UI、海报、网页和视觉设计灵感。</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="empty">没有找到匹配结果。</div>
+        </section>
+
+        <section class="section" id="tools">
+          <div class="section-head">
+            <div>
+              <h2>工具资源</h2>
+              <p>常用网站、在线工具、AI 工具和开发工具入口。</p>
+            </div>
+            <span class="pill">Tools</span>
+          </div>
+
+          <div class="cards">
+            <article class="mini-card resource-row">
+              <div class="icon">🤖</div>
+              <h3>ChatGPT</h3>
+              <p>AI 对话、写作、代码、学习和创意生成助手。</p>
+              <a href="https://chatgpt.com/" target="_blank">立即访问 →</a>
+            </article>
+
+            <article class="mini-card resource-row">
+              <div class="icon">💻</div>
+              <h3>GitHub</h3>
+              <p>代码托管、开源项目管理和个人网站部署平台。</p>
+              <a href="https://github.com/" target="_blank">立即访问 →</a>
+            </article>
+
+            <article class="mini-card resource-row">
+              <div class="icon">🚀</div>
+              <h3>Vercel</h3>
+              <p>适合前端项目的一键部署平台。</p>
+              <a href="https://vercel.com/" target="_blank">立即访问 →</a>
+            </article>
+
+            <article class="mini-card resource-row">
+              <div class="icon">🎨</div>
+              <h3>Canva</h3>
+              <p>在线设计、封面、海报和社交媒体图片制作工具。</p>
+              <a href="https://www.canva.com/" target="_blank">立即访问 →</a>
+            </article>
+
+            <article class="mini-card resource-row">
+              <div class="icon">✂️</div>
+              <h3>Remove.bg</h3>
+              <p>一键图片去背景工具，适合商品图和头像处理。</p>
+              <a href="https://www.remove.bg/" target="_blank">立即访问 →</a>
+            </article>
+
+            <article class="mini-card resource-row">
+              <div class="icon">📦</div>
+              <h3>TinyPNG</h3>
+              <p>图片压缩工具，适合优化网页加载速度。</p>
+              <a href="https://tinypng.com/" target="_blank">立即访问 →</a>
+            </article>
+          </div>
+
+          <div class="empty">没有找到匹配结果。</div>
+        </section>
+
+        <section class="section" id="learn">
+          <div class="section-head">
+            <div>
+              <h2>学习资源</h2>
+              <p>适合学习前端、开发、AI、设计和建站的资料入口。</p>
+            </div>
+            <span class="pill">Learn</span>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>名称</th>
+                  <th>链接</th>
+                  <th>分类</th>
+                  <th>说明</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="resource-row">
+                  <td class="name">MDN Web Docs</td>
+                  <td><a href="https://developer.mozilla.org/" target="_blank">访问网站</a></td>
+                  <td><span class="label">前端</span></td>
+                  <td class="desc">学习 HTML、CSS、JavaScript 的权威文档。</td>
+                </tr>
+
+                <tr class="resource-row">
+                  <td class="name">Google Search Central</td>
+                  <td><a href="https://developers.google.com/search" target="_blank">访问网站</a></td>
+                  <td><span class="label">SEO</span></td>
+                  <td class="desc">学习网站收录、搜索优化和结构化数据。</td>
+                </tr>
+
+                <tr class="resource-row">
+                  <td class="name">GitHub Pages Docs</td>
+                  <td><a href="https://docs.github.com/pages" target="_blank">访问网站</a></td>
+                  <td><span class="label">建站</span></td>
+                  <td class="desc">学习如何用 GitHub Pages 部署个人网站。</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="empty">没有找到匹配结果。</div>
+        </section>
+
+        <section class="section" id="projects">
+          <div class="section-head">
+            <div>
+              <h2>站长项目</h2>
+              <p>一些个人项目、实验页面和创作收藏。</p>
+            </div>
+            <span class="pill">Projects</span>
+          </div>
+
+          <div class="cards">
+            <article class="mini-card resource-row">
+              <div class="icon">🌐</div>
+              <h3>Moondeyyy Hub</h3>
+              <p>当前这个个人聚合导航网站，使用 GitHub Pages 部署。</p>
+              <a href="#">查看项目 →</a>
+            </article>
+
+            <article class="mini-card resource-row">
+              <div class="icon">🧠</div>
+              <h3>Prompt Gallery</h3>
+              <p>用于整理 AI 图片提示词和创作灵感的页面。</p>
+              <a href="#">即将上线 →</a>
+            </article>
+
+            <article class="mini-card resource-row">
+              <div class="icon">🧩</div>
+              <h3>Tools Collection</h3>
+              <p>整理常用工具网站、设计资源和效率入口。</p>
+              <a href="#">即将上线 →</a>
+            </article>
+          </div>
+
+          <div class="empty">没有找到匹配结果。</div>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <div>
+              <h2>免责声明</h2>
+              <p>使用本站前请阅读。</p>
+            </div>
+            <span class="pill">Notice</span>
+          </div>
+
+          <div style="padding: 24px; line-height: 1.85; color: var(--muted);">
+            本站仅用于个人信息整理、资源收藏和网页设计展示。所有外部链接内容均由对应网站或平台提供，
+            本站不对外部内容的准确性、安全性和合法性负责。请遵守所在地法律法规，合理使用互联网资源。
+          </div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      © 2026 Moondeyyy Hub. Built with GitHub Pages.
+    </div>
+  </footer>
+
+  <script>
+    const body = document.body;
+    const themeToggle = document.getElementById("themeToggle");
+    const themeIcon = document.getElementById("themeIcon");
+    const themeText = document.getElementById("themeText");
+    const searchInput = document.getElementById("searchInput");
+
+    const savedTheme = localStorage.getItem("theme");
+
+    if (savedTheme === "dark") {
+      body.classList.add("dark");
+      themeIcon.textContent = "☀️";
+      themeText.textContent = "日间";
+    }
+
+    themeToggle.addEventListener("click", () => {
+      body.classList.toggle("dark");
+
+      if (body.classList.contains("dark")) {
+        localStorage.setItem("theme", "dark");
+        themeIcon.textContent = "☀️";
+        themeText.textContent = "日间";
+      } else {
+        localStorage.setItem("theme", "light");
+        themeIcon.textContent = "🌙";
+        themeText.textContent = "夜间";
+      }
+    });
+
+    function filterResources() {
+      const keyword = searchInput.value.trim().toLowerCase();
+      const sections = document.querySelectorAll(".section");
+
+      sections.forEach(section => {
+        const rows = section.querySelectorAll(".resource-row");
+        const empty = section.querySelector(".empty");
+
+        if (!rows.length) return;
+
+        let visibleCount = 0;
+
+        rows.forEach(row => {
+          const text = row.innerText.toLowerCase();
+
+          if (text.includes(keyword)) {
+            row.style.display = "";
+            visibleCount++;
+          } else {
+            row.style.display = "none";
+          }
+        });
+
+        if (empty) {
+          empty.style.display = visibleCount === 0 ? "block" : "none";
+        }
+      });
+    }
+
+    searchInput.addEventListener("input", filterResources);
+
+    function clearSearch() {
+      searchInput.value = "";
+      filterResources();
+      searchInput.focus();
+    }
+  </script>
 </body>
 </html>
